@@ -1,7 +1,8 @@
-import Square from "./Square"
+// import Square from "./Square"
 import { useEffect } from "react"
 const Board = (props) => {
   const BOARD_ARRAY = []
+  const HTML_BOARD_ARRAY = []
 
   const createNode = (row, col) => {
     return {
@@ -18,10 +19,14 @@ const Board = (props) => {
 
     for (let row = 0; row < M_ROWS; row++) {
       const Column = []
+      const htmlColumn = []
       for (let col = 0; col < M_COLS; col++) {
-        Column.push(createNode(row, col))
+        let node = createNode(row, col)
+        Column.push(node)
+        htmlColumn.push(<div className="box" id={`r${row}-c${col}`} onClick={() => highlightNeighbours(node)}></div>)
       }
       BOARD_ARRAY.push(Column)
+      HTML_BOARD_ARRAY.push(htmlColumn)
     }
   }
 
@@ -74,14 +79,28 @@ const Board = (props) => {
     return neighbours
   }
 
+  const highlightNeighbours = (node) => {
+    let neighbours = getNeighbours(node);
+    for (let i = 0; i < 4; i++) {
+      let curr = neighbours[i]
+      if (curr === "" || typeof curr === 'undefined') {
+        continue
+      } else {
+        let row = curr.row
+        let col = curr.col
+        let node = document.getElementById(`r${row}-c${col}`)
+        node.classList.add("highlight")
+      }
+    }
+  }
   console.log(getNeighbours(createNode(0, 12)))
   // came from 
 
   return (
     <div className="grid">
       {
-        BOARD_ARRAY.map((row, rowIdx) => {
-          return (<div className='row'>{row.map((col, colIdx) => <Square col={colIdx} row={rowIdx}></Square>)}</div>)
+        HTML_BOARD_ARRAY.map((row, rowIdx) => {
+          return (<div className='row'>{row.map((col, colIdx) => col)}</div>)
         })
       }
     </div>

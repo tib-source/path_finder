@@ -1,8 +1,8 @@
 import React from "react";
 
-const Square = ({ col, row }) => {
+const Square = ({ col, row, Board, highlightNeighbours }) => {
   return (
-    <div className="box"><small>{row}-{col}</small></div>
+    <div onClick={() => highlightNeighbours(Board[row][col])} className="box"></div>
   )
 }
 

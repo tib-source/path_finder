@@ -73,4 +73,9 @@ header button {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
+
+.highlight {
+  background-color: blue;
+  border: 1px solid white;
+}
 /*# sourceMappingURL=App.css.map */
