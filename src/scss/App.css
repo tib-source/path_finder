@@ -7,6 +7,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+}
+
 .grid {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -18,7 +31,7 @@ code {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  border: .1px solid black;
+  border: 1px solid black;
 }
 
 .row {
@@ -30,7 +43,8 @@ code {
 .box {
   width: 30px;
   aspect-ratio: 1;
-  border: 0.1px solid black;
+  border: 0 solid black;
+  border-width: 0.1px;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
