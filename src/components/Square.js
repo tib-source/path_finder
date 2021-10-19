@@ -1,11 +1,8 @@
 import React from "react";
 
-const Square = (props) => {
+const Square = ({ col, row }) => {
   return (
-    <div className="square">
-      {this.props.col}
-      {this.props.row}
-    </div>
+    <div className="box"><small>{row}-{col}</small></div>
   )
 }
 
