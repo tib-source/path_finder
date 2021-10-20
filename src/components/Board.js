@@ -96,7 +96,63 @@ const Board = (props) => {
   console.log(getNeighbours(createNode(0, 12)))
   // came from 
 
+  const makeQueue = () => {
+    return {
+      list: [],
+      get: () => {
+        return this.list.pop()
+      },
+      put: (item) => {
+        this.list.unshift(item)
+      },
+      empty: () => {
+        return this.list.length === 0
+      }
+    }
+  }
+
+  const searchLoop = (startNode, id = false) => {
+    let node;
+    let row;
+    let col;
+    if (id) {
+      node = startNode.split("-")
+      row = node[0].substring(1)
+      col = node[1].substring(1)
+      node = BOARD_ARRAY[row][col]
+    }
+    node = startNode
+
+    let frontier = []
+    frontier.push(node)
+    let cameFrom = {}
+    cameFrom[node] = null
+    let counter = 0
+
+    while (!frontier.length == 0) {
+      counter++
+      if (counter >= 10000) { console.log(frontier); break }
+      let current = frontier.shift()
+      highlightNeighbours(current)
+      let neighbours = getNeighbours(current)
+      neighbours.forEach(newNode => {
+        if (newNode === "" || typeof newNode === 'undefined') { return }
+        if (!Object.keys(cameFrom).includes(newNode)) {
+          frontier.push(newNode)
+          cameFrom[newNode] = current
+          newNode.previousNode = current
+          return "meow"
+        } else {
+          return 'roar'
+        }
+      })
+    }
+
+
+  }
   return (
+    <>
+      <button onClick={() => searchLoop(createNode(12, 20))}>search</button>
     <div className="grid">
       {
         HTML_BOARD_ARRAY.map((row, rowIdx) => {
@@ -104,6 +160,7 @@ const Board = (props) => {
         })
       }
     </div>
+    </>
   )
 }
 
