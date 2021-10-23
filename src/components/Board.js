@@ -111,7 +111,7 @@ const Board = (props) => {
     }
   }
 
-  const searchLoop = (startNode, id = false) => {
+  const breadthFirstSearch = (startNode, id = false) => {
     let node;
     let row;
     let col;
@@ -123,36 +123,36 @@ const Board = (props) => {
     }
     node = startNode
 
-    let frontier = []
+    let frontier = [] // queue to keep track of frontier nodes
+    let visited = [] // list to keep track of visited Nodes 
+    let cameFrom = {} //
+
+
     frontier.push(node)
-    let cameFrom = {}
     cameFrom[node] = null
-    let counter = 0
 
     while (!frontier.length == 0) {
-      counter++
-      if (counter >= 10000) { console.log(frontier); break }
+
       let current = frontier.shift()
       highlightNeighbours(current)
       let neighbours = getNeighbours(current)
       neighbours.forEach(newNode => {
         if (newNode === "" || typeof newNode === 'undefined') { return }
-        if (!Object.keys(cameFrom).includes(newNode)) {
+        if (!visited.includes(newNode)) {
           frontier.push(newNode)
+          visited.push(newNode)
           cameFrom[newNode] = current
           newNode.previousNode = current
-          return "meow"
-        } else {
-          return 'roar'
         }
       })
+
     }
 
 
   }
   return (
     <>
-      <button onClick={() => searchLoop(createNode(12, 20))}>search</button>
+      <button onClick={() => breadthFirstSearch(createNode(12, 20))}>search</button>
     <div className="grid">
       {
         HTML_BOARD_ARRAY.map((row, rowIdx) => {

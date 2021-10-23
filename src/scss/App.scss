@@ -35,7 +35,7 @@ header{
   aspect-ratio: 1;
   border: 0 solid black;
   border-width: 0.1px;
-  transition: 0.4s;
+  transition: 1s;
 }
 
 .box:hover{
@@ -46,4 +46,12 @@ header{
 .highlight{ 
   background-color: blue;
   border: 1px solid white;
+  animation: opacity 1s;
+
+}
+
+@keyframes opacity {
+  to { 
+    opacity: 1;
+  }
 }
