@@ -129,6 +129,8 @@ const Board = (props) => {
       node = BOARD_ARRAY[row][col]
     }
     node = startNode
+    let htmlCur = document.querySelector(`#r${node.row}-c${node.col}`)
+    htmlCur.classList.add('start')
 
     let frontier = [] // queue to keep track of frontier nodes
     let visited = [] // list to keep track of visited Nodes 
@@ -140,13 +142,15 @@ const Board = (props) => {
 
     while (!frontier.length == 0) {
       let current = frontier.shift()
-      if (current.row == endNode.row && current.col == endNode.col) {
-        let htmlCur = document.querySelector(`#r${current.row}-c${current.col}`)
-        htmlCur.classList.add('active')
-      }
+
       let neighbours = getNeighbours(current)
       neighbours.forEach(newNode => {
         setTimeout(() => highlightNeighbours(current), 100)
+        if (current.row == endNode.row && current.col == endNode.col) {
+          let htmlCur = document.querySelector(`#r${current.row}-c${current.col}`)
+          setTimeout(() => htmlCur.classList.add('active'), 100)
+
+        }
         if (newNode === "" || typeof newNode === 'undefined') { return }
         if (!visited.includes(newNode)) {
           frontier.push(newNode)

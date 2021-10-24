@@ -85,8 +85,10 @@ header button {
 
 .active {
   background-color: yellow;
-  -webkit-animation: bounce 2s linear;
-          animation: bounce 2s linear;
+  -webkit-animation: bouncier 2s linear;
+          animation: bouncier 2s linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 
 @-webkit-keyframes bounce {
@@ -107,7 +109,7 @@ header button {
             transform: scale(1.1);
   }
   100% {
-    background-color: lightblue;
+    background-color: rosybrown;
     -webkit-transform: scale(1);
             transform: scale(1);
   }
@@ -131,9 +133,61 @@ header button {
             transform: scale(1.1);
   }
   100% {
-    background-color: lightblue;
+    background-color: rosybrown;
     -webkit-transform: scale(1);
             transform: scale(1);
   }
+}
+
+@-webkit-keyframes bouncier {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    border-radius: 50%;
+    background-color: darkred;
+  }
+  50% {
+    border-radius: 0;
+    background-color: red;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  75% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    background-color: pink;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes bouncier {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    border-radius: 50%;
+    background-color: darkred;
+  }
+  50% {
+    border-radius: 0;
+    background-color: red;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  75% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    background-color: pink;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+.start {
+  background-color: rebeccapurple;
 }
 /*# sourceMappingURL=App.css.map */
