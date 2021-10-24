@@ -1,13 +1,14 @@
-class PathFinder {
+export default class PathFinder {
   constructor(M_ROWS, M_COLS) {
     this.M_COLS = M_COLS
     this.M_ROWS = M_ROWS
-    this.this.BOARD_ARRAY = []
-    this.this.HTML_BOARD_ARRAY = []
+    this.BOARD_ARRAY = []
+    this.HTML_BOARD_ARRAY = []
+    this.createBoard(this.M_ROWS, this.M_COLS)
   }
 
 
-  createNode = (row, col) => {
+  createNode(row, col) {
     return {
       row: row,
       col: col,
@@ -16,7 +17,7 @@ class PathFinder {
     }
   }
 
-  createBoard = (MaxRows = 20, MaxCols = 50) => {
+  createBoard(MaxRows = 20, MaxCols = 50) {
     const M_ROWS = MaxRows,
       M_COLS = MaxCols
 
@@ -24,16 +25,14 @@ class PathFinder {
       const Column = []
       const htmlColumn = []
       for (let col = 0; col < M_COLS; col++) {
-        let node = createNode(row, col)
+        let node = this.createNode(row, col)
         Column.push(node)
-        htmlColumn.push(<div className="box" id={`r${row}-c${col}`} onClick={() => highlightNeighbours(node)}></div>)
+        htmlColumn.push(<div className="box" id={`r${row}-c${col}`} onClick={() => this.highlightNeighbours(node)}></div>)
       }
       this.BOARD_ARRAY.push(Column)
       this.HTML_BOARD_ARRAY.push(htmlColumn)
     }
   }
-
-  createBoard()
 
   getNeighbourNode(node, direction, vertical = false) {
     try {
@@ -50,29 +49,29 @@ class PathFinder {
     }
   }
 
-  getNeighbours = (node) => {
+  getNeighbours(node) {
     let neighbours = []
     let directions = [1, -1, "U", "D"]
     for (let direction in directions) {
       let neighbour
       switch (directions[direction]) {
         case 1:
-          neighbour = getNeighbourNode(node, +1)
+          neighbour = this.getNeighbourNode(node, +1)
           neighbours.push(neighbour)
           break
 
         case -1:
-          neighbour = getNeighbourNode(node, -1)
+          neighbour = this.getNeighbourNode(node, -1)
           neighbours.push(neighbour)
           break
 
         case "U":
-          neighbour = getNeighbourNode(node, -1, true)
+          neighbour = this.getNeighbourNode(node, -1, true)
           neighbours.push(neighbour)
           break
 
         case "D":
-          neighbour = getNeighbourNode(node, 1, true)
+          neighbour = this.getNeighbourNode(node, 1, true)
           neighbours.push(neighbour)
           break
         default:
@@ -82,8 +81,8 @@ class PathFinder {
     return neighbours
   }
 
-  highlightNeighbours = (node) => {
-    let neighbours = getNeighbours(node);
+  highlightNeighbours(node) {
+    let neighbours = this.getNeighbours(node);
     for (let i = 0; i < 4; i++) {
       let curr = neighbours[i]
       if (curr === "" || typeof curr === 'undefined') {
@@ -100,29 +99,29 @@ class PathFinder {
 
   // came from 
 
-  makeQueue = () => {
-    return {
-      list: [],
-      get: () => {
-        return this.list.pop()
-      },
-      put: (item) => {
-        this.list.unshift(item)
-      },
-      empty: () => {
-        return this.list.length === 0
-      }
-    }
-  }
+  // makeQueue() {
+  //   return {
+  //     list: [],
+  //     get: () => {
+  //       return this.list.pop()
+  //     },
+  //     put: (item) => {
+  //       this.list.unshift(item)
+  //     },
+  //     empty: () => {
+  //       return this.list.length === 0
+  //     }
+  //   }
+  // }
   delay = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
 
-  getPath = (node) => {
-
+  getPath(node) {
+    return null
   }
 
-  breadthFirstSearch = (startNode, endNode, id = false) => {
+  breadthFirstSearch(startNode, endNode, id = false) {
     let node;
     let row;
     let col;
@@ -149,7 +148,7 @@ class PathFinder {
 
       let neighbours = this.getNeighbours(current)
       neighbours.forEach(newNode => {
-        setTimeout(() => highlightNeighbours(current), 100)
+        setTimeout(() => this.highlightNeighbours(current), 100)
         if (current.row == endNode.row && current.col == endNode.col) {
           let htmlCur = document.querySelector(`#r${current.row}-c${current.col}`)
           setTimeout(() => htmlCur.classList.add('active'), 100)

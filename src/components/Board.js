@@ -1,10 +1,9 @@
 // import Square from "./Square"
 import { useEffect } from "react"
-const Board = (props) => {
+const Board = ({ HTML_BOARD_ARRAY, mock }) => {
 
   return (
     <>
-      <button onClick={() => breadthFirstSearch(createNode(12, 20), createNode(1, 29))}>search</button>
     <div className="grid">
       {
         HTML_BOARD_ARRAY.map((row, rowIdx) => {
