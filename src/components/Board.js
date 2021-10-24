@@ -110,8 +110,15 @@ const Board = (props) => {
       }
     }
   }
+  const delay = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
 
-  const breadthFirstSearch = (startNode, id = false) => {
+  const getPath = (node) => {
+
+  }
+
+  const breadthFirstSearch = (startNode, endNode, id = false) => {
     let node;
     let row;
     let col;
@@ -132,11 +139,14 @@ const Board = (props) => {
     cameFrom[node] = null
 
     while (!frontier.length == 0) {
-
       let current = frontier.shift()
-      highlightNeighbours(current)
+      if (current.row == endNode.row && current.col == endNode.col) {
+        let htmlCur = document.querySelector(`#r${current.row}-c${current.col}`)
+        htmlCur.classList.add('active')
+      }
       let neighbours = getNeighbours(current)
       neighbours.forEach(newNode => {
+        setTimeout(() => highlightNeighbours(current), 100)
         if (newNode === "" || typeof newNode === 'undefined') { return }
         if (!visited.includes(newNode)) {
           frontier.push(newNode)
@@ -152,7 +162,7 @@ const Board = (props) => {
   }
   return (
     <>
-      <button onClick={() => breadthFirstSearch(createNode(12, 20))}>search</button>
+      <button onClick={() => breadthFirstSearch(createNode(12, 20), createNode(1, 29))}>search</button>
     <div className="grid">
       {
         HTML_BOARD_ARRAY.map((row, rowIdx) => {

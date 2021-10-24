@@ -64,8 +64,8 @@ header button {
   aspect-ratio: 1;
   border: 0 solid black;
   border-width: 0.1px;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
 .box:hover {
@@ -75,7 +75,65 @@ header button {
 }
 
 .highlight {
-  background-color: blue;
+  background-color: lightblue;
   border: 1px solid white;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation: bounce 2s linear;
+          animation: bounce 2s linear;
+}
+
+.active {
+  background-color: yellow;
+  -webkit-animation: bounce 2s linear;
+          animation: bounce 2s linear;
+}
+
+@-webkit-keyframes bounce {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    border-radius: 50%;
+    background-color: darkblue;
+  }
+  50% {
+    border-radius: 0;
+    background-color: cyan;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  75% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    background-color: lightblue;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    border-radius: 50%;
+    background-color: darkblue;
+  }
+  50% {
+    border-radius: 0;
+    background-color: cyan;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  75% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    background-color: lightblue;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 /*# sourceMappingURL=App.css.map */

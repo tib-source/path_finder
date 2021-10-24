@@ -44,14 +44,35 @@ header{
 }
 
 .highlight{ 
-  background-color: blue;
+  background-color: lightblue;
   border: 1px solid white;
-  animation: opacity 1s;
+  animation-fill-mode:forwards ;
+  animation: bounce 2s linear;
 
 }
 
-@keyframes opacity {
-  to { 
-    opacity: 1;
+.active{ 
+  background-color: yellow;
+  animation: bounce 2s linear;
+
+}
+
+@keyframes bounce {
+  0%{
+    transform: scale(0.5);
+    border-radius: 50%;
+    background-color: darkblue;
+  }
+  50%{
+    border-radius: 0;
+    background-color: cyan;
+    transform: scale(1);
+  }
+  75%{
+    transform: scale(1.1);
+  }
+  100% { 
+    background-color: lightblue;
+    transform: scale(1);
   }
 }
