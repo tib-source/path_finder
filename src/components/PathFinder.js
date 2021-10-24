@@ -34,6 +34,13 @@ export default class PathFinder {
     }
   }
 
+  resetBoard() {
+    this.createBoard()
+    this.HTML_BOARD_ARRAY.forEach(elem => {
+
+      elem.classList.remove('active')
+    })
+  }
   getNeighbourNode(node, direction, vertical = false) {
     try {
       let Node;
@@ -143,13 +150,13 @@ export default class PathFinder {
     this.frontier.push(node)
     this.cameFrom[node] = null
 
-    while (!this.frontier.length == 0) {
+    while (!this.frontier.length === 0) {
       let current = this.frontier.shift()
 
       let neighbours = this.getNeighbours(current)
       neighbours.forEach(newNode => {
         setTimeout(() => this.highlightNeighbours(current), 100)
-        if (current.row == endNode.row && current.col == endNode.col) {
+        if (current.row === endNode.row && current.col === endNode.col) {
           let htmlCur = document.querySelector(`#r${current.row}-c${current.col}`)
           setTimeout(() => htmlCur.classList.add('active'), 100)
 

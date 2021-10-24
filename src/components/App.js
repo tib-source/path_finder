@@ -12,7 +12,7 @@ function App() {
 
 
   const handleReset = () => {
-    path.createBoard()
+    path.resetBoard()
     return setupdate({
       counter: update.counter + 1
     })
