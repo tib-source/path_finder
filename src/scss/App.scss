@@ -102,3 +102,15 @@ header{
   background-color: rebeccapurple;
   
 }
+
+.pathNode{ 
+  background-color: red;
+  transition: 0.4s ease-in-out;
+  animation: opacity 0.5s;
+}
+
+@keyframes opactiy {
+  to{ 
+    opacity: 1;
+  }
+}

@@ -172,6 +172,23 @@ export default class PathFinder {
 
     }
 
+    findReturnPath(startNode, currentNode){
+      const returnNode = currentNode.previousNode
+      const path = []
+      const current = currentNode
+      while(current !== startNode){
+        current = current.previousNode
+        row = current.row 
+        col = current.col
+        const htmlCurrent = this.HTML_BOARD_ARRAY[row][col]
+        htmlCurrent.classList.add('nodePath') 
+        path.push(current) 
+      }
+    }
+
 
   }
+
+
+
 }

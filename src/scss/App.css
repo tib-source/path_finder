@@ -1,10 +1,13 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+ 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+ sans-serif;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+ monospace;
 }
 
 body {
@@ -191,3 +194,15 @@ header button {
   background-color: rebeccapurple;
 }
 /*# sourceMappingURL=App.css.map */
+
+.pathNode{ 
+  background-color: red;
+  transition: 0.4s ease-in-out;
+  animation: opacity 0.5s;
+}
+
+@keyframes opactiy {
+  to{ 
+    opacity: 1;
+  }
+}
