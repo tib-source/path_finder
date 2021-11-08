@@ -146,6 +146,7 @@ export default class PathFinder {
     }
     node = startNode;
     let htmlCur = document.querySelector(`#r${node.row}-c${node.col}`);
+    htmlCur.classList.add('start')
 
 
     this.frontier = []; // queue to keep track of this.frontier nodes
@@ -166,6 +167,7 @@ export default class PathFinder {
             `#r${current.row}-c${current.col}`
           );
           setTimeout(() => htmlCur.classList.add("active"), 100);
+          this.findReturnPath(startNode, current)
           found = true
           return null
         }
@@ -191,8 +193,12 @@ export default class PathFinder {
       current = current.previousNode;
       row = current.row;
       col = current.col;
-      const htmlCurrent = this.HTML_BOARD_ARRAY[row][col];
-      htmlCurrent.classList.add("nodePath");
+
+      if (current === startNode) {
+        break
+      }
+      let htmlCur = document.querySelector(`#r${row}-c${col}`);
+      setTimeout(() => htmlCur.classList.add('nodePath'), 200)
       path.push(current);
     }
   }

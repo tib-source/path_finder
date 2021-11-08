@@ -144,14 +144,14 @@ header button {
   border: 1px solid white;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-  -webkit-animation: bounce 2s linear;
-          animation: bounce 2s linear;
+  -webkit-animation: bounce 1s linear;
+          animation: bounce 1s linear;
 }
 
 .active {
   background-color: yellow;
-  -webkit-animation: bouncier 2s linear;
-          animation: bouncier 2s linear;
+  -webkit-animation: bouncier 1s linear;
+          animation: bouncier 1s linear;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
@@ -174,7 +174,6 @@ header button {
             transform: scale(1.1);
   }
   100% {
-    background-color: rosybrown;
     -webkit-transform: scale(1);
             transform: scale(1);
   }
@@ -198,7 +197,6 @@ header button {
             transform: scale(1.1);
   }
   100% {
-    background-color: rosybrown;
     -webkit-transform: scale(1);
             transform: scale(1);
   }
@@ -258,10 +256,10 @@ header button {
           animation: none;
 }
 
-.pathNode {
+.nodePath {
   background-color: red;
-  -webkit-transition: 0.4s ease-in-out;
-  transition: 0.4s ease-in-out;
+  -webkit-transition: 0.4s ease-in;
+  transition: 0.4s ease-in;
   -webkit-animation: opacity 0.5s;
           animation: opacity 0.5s;
 }

@@ -87,12 +87,12 @@ header {
   background-color: lightblue;
   border: 1px solid white;
   animation-fill-mode: forwards;
-  animation: bounce 2s linear;
+  animation: bounce 1s linear;
 }
 
 .active {
   background-color: yellow;
-  animation: bouncier 2s linear;
+  animation: bouncier 1s linear;
   animation-fill-mode: forwards;
 }
 
@@ -111,7 +111,6 @@ header {
     transform: scale(1.1);
   }
   100% {
-    background-color: rosybrown;
     transform: scale(1);
   }
 }
@@ -141,9 +140,9 @@ header {
   animation: none;
 }
 
-.pathNode {
+.nodePath {
   background-color: red;
-  transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in;
   animation: opacity 0.5s;
 }
 
