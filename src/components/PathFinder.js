@@ -52,6 +52,7 @@ export default class PathFinder {
     try {
       let Node;
       if (!vertical) {
+        console.log(node.row + direction, node.col)
         Node = this.BOARD_ARRAY[node.row + direction][node.col];
       } else {
         Node = this.BOARD_ARRAY[node.row][node.col + direction];

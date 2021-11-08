@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Board from "./Board";
 import PathFinder from "./PathFinder";
 
@@ -6,13 +6,9 @@ function App() {
   const [update, setupdate] = useState({ counter: 0 });
   const min = 20;
   const max = 50;
-  const path = new PathFinder(min, max);
+  let path = new PathFinder(min, max);
   const [startNode, setStartNode] = useState(path.createNode(0, 10));
   const [endNode, setEndNode] = useState(path.createNode(1, 30));
-  const mockTest = () => {
-    console.log(startNode, endNode);
-    path.breadthFirstSearch(startNode, endNode);
-  };
 
   const handleReset = () => {
     path.resetBoard();
@@ -21,6 +17,30 @@ function App() {
     return setupdate({
       counter: update.counter + 1,
     });
+  };
+  useEffect(() => {
+    function reset() {
+      path.HTML_BOARD_ARRAY.forEach((elem) => {
+        elem.forEach((col) => {
+          let htmlCur = document.querySelector(`#${col.key}`);
+          htmlCur.classList = ["box"];
+        });
+      });
+    }
+    setTimeout(() => {
+      reset();
+      console.log(`r${startNode.col}-c${startNode.row}`);
+      document
+        .getElementById(`r${startNode.row}-c${startNode.col}`)
+        .classList.add("start");
+      document
+        .getElementById(`r${endNode.row}-c${endNode.col}`)
+        .classList.add("active");
+    }, 100);
+  }, [startNode, endNode, path.HTML_BOARD_ARRAY]);
+  const mockTest = () => {
+    console.log(startNode, endNode);
+    path.breadthFirstSearch(startNode, endNode);
   };
 
   const handleInput = (node) => {
