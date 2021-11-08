@@ -31,7 +31,6 @@ export default class PathFinder {
             className="box"
             key={`r${row}-c${col}`}
             id={`r${row}-c${col}`}
-            onClick={() => this.highlightNeighbours(node)}
           ></div>
         );
       }
@@ -148,7 +147,6 @@ export default class PathFinder {
     node = startNode;
     let htmlCur = document.querySelector(`#r${node.row}-c${node.col}`);
 
-    setTimeout(() => htmlCur.classList.add("start"), 59)
 
     this.frontier = []; // queue to keep track of this.frontier nodes
     this.visited = []; // list to keep track of this.visited Nodes

@@ -21,6 +21,46 @@ header {
     width: 100px;
   }
 }
+
+.startEnd {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  label {
+    gap: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    input {
+      width: 50px;
+    }
+  }
+
+  .nodeInput {
+    background-color: yellow;
+    width: fit-content;
+    padding: 0.7rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: 200ms;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+}
+
+.nodeInput:nth-child(2) {
+  background-color: rebeccapurple;
+  color: white;
+}
 .grid {
   display: flex;
   width: fit-content;
