@@ -29,7 +29,6 @@ function App() {
     }
     setTimeout(() => {
       reset();
-      console.log(`r${startNode.col}-c${startNode.row}`);
       document
         .getElementById(`r${startNode.row}-c${startNode.col}`)
         .classList.add("start");
@@ -39,7 +38,6 @@ function App() {
     }, 100);
   }, [startNode, endNode, path.HTML_BOARD_ARRAY]);
   const mockTest = () => {
-    console.log(startNode, endNode);
     path.breadthFirstSearch(startNode, endNode);
   };
 
@@ -53,7 +51,6 @@ function App() {
             start.classList.add("start");
             row = parseInt(row.substring(1));
             col = parseInt(col.substring(1));
-            console.log(path.createNode(row, col));
             setStartNode(path.createNode(row, col));
           }
 

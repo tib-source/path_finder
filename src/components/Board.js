@@ -3,7 +3,6 @@ import { useEffect } from "react";
 const Board = ({ HTML_BOARD_ARRAY, mock }) => {
   const getRowElement = (rowIdx) => {
     const rows = document.querySelectorAll(".row");
-    console.log(rows);
     return rows[rowIdx];
   };
   return (
