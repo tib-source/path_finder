@@ -1,12 +1,11 @@
 export default class PathFinder {
   constructor(M_ROWS, M_COLS) {
-    this.M_COLS = M_COLS
-    this.M_ROWS = M_ROWS
-    this.BOARD_ARRAY = []
-    this.HTML_BOARD_ARRAY = []
-    this.createBoard(this.M_ROWS, this.M_COLS)
+    this.M_COLS = M_COLS;
+    this.M_ROWS = M_ROWS;
+    this.BOARD_ARRAY = [];
+    this.HTML_BOARD_ARRAY = [];
+    this.createBoard(this.M_ROWS, this.M_COLS);
   }
-
 
   createNode(row, col) {
     return {
@@ -14,97 +13,105 @@ export default class PathFinder {
       col: col,
       previousNode: null,
       isWall: false,
-    }
+    };
   }
 
   createBoard(MaxRows = 20, MaxCols = 50) {
     const M_ROWS = MaxRows,
-      M_COLS = MaxCols
+      M_COLS = MaxCols;
 
     for (let row = 0; row < M_ROWS; row++) {
-      const Column = []
-      const htmlColumn = []
+      const Column = [];
+      const htmlColumn = [];
       for (let col = 0; col < M_COLS; col++) {
-        let node = this.createNode(row, col)
-        Column.push(node)
-        htmlColumn.push(<div className="box" id={`r${row}-c${col}`} onClick={() => this.highlightNeighbours(node)}></div>)
+        let node = this.createNode(row, col);
+        Column.push(node);
+        htmlColumn.push(
+          <div
+            className="box"
+            key={`r${row}-c${col}`}
+            id={`r${row}-c${col}`}
+            onClick={() => this.highlightNeighbours(node)}
+          ></div>
+        );
       }
-      this.BOARD_ARRAY.push(Column)
-      this.HTML_BOARD_ARRAY.push(htmlColumn)
+      this.BOARD_ARRAY.push(Column);
+      this.HTML_BOARD_ARRAY.push(htmlColumn);
     }
   }
 
   resetBoard() {
-    this.createBoard()
-    this.HTML_BOARD_ARRAY.forEach(elem => {
-
-      elem.classList.remove('active')
-    })
+    this.createBoard();
+    this.HTML_BOARD_ARRAY.forEach((elem) => {
+      elem.forEach(col => {
+        let htmlCur = document.querySelector(`#${col.key}`);
+        htmlCur.classList = ['box']
+      })
+    });
   }
   getNeighbourNode(node, direction, vertical = false) {
     try {
       let Node;
       if (!vertical) {
-        Node = this.BOARD_ARRAY[node.row + direction][node.col]
+        Node = this.BOARD_ARRAY[node.row + direction][node.col];
       } else {
-        Node = this.BOARD_ARRAY[node.row][node.col + direction]
+        Node = this.BOARD_ARRAY[node.row][node.col + direction];
       }
 
-      return Node
+      return Node;
     } catch (e) {
-      return ""
+      return "";
     }
   }
 
   getNeighbours(node) {
-    let neighbours = []
-    let directions = [1, -1, "U", "D"]
+    let neighbours = [];
+    let directions = [1, -1, "U", "D"];
     for (let direction in directions) {
-      let neighbour
+      let neighbour;
       switch (directions[direction]) {
         case 1:
-          neighbour = this.getNeighbourNode(node, +1)
-          neighbours.push(neighbour)
-          break
+          neighbour = this.getNeighbourNode(node, +1);
+          neighbours.push(neighbour);
+          break;
 
         case -1:
-          neighbour = this.getNeighbourNode(node, -1)
-          neighbours.push(neighbour)
-          break
+          neighbour = this.getNeighbourNode(node, -1);
+          neighbours.push(neighbour);
+          break;
 
         case "U":
-          neighbour = this.getNeighbourNode(node, -1, true)
-          neighbours.push(neighbour)
-          break
+          neighbour = this.getNeighbourNode(node, -1, true);
+          neighbours.push(neighbour);
+          break;
 
         case "D":
-          neighbour = this.getNeighbourNode(node, 1, true)
-          neighbours.push(neighbour)
-          break
+          neighbour = this.getNeighbourNode(node, 1, true);
+          neighbours.push(neighbour);
+          break;
         default:
-          break
+          break;
       }
     }
-    return neighbours
+    return neighbours;
   }
 
   highlightNeighbours(node) {
     let neighbours = this.getNeighbours(node);
     for (let i = 0; i < 4; i++) {
-      let curr = neighbours[i]
-      if (curr === "" || typeof curr === 'undefined') {
-        continue
+      let curr = neighbours[i];
+      if (curr === "" || typeof curr === "undefined") {
+        continue;
       } else {
-        let row = curr.row
-        let col = curr.col
-        let node = document.getElementById(`r${row}-c${col}`)
-        node.classList.add("highlight")
+        let row = curr.row;
+        let col = curr.col;
+        let node = document.getElementById(`r${row}-c${col}`);
+        node.classList.add("highlight");
       }
     }
   }
 
-
-  // came from 
+  // came from
 
   // makeQueue() {
   //   return {
@@ -121,11 +128,11 @@ export default class PathFinder {
   //   }
   // }
   delay = (ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms))
-  }
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
 
   getPath(node) {
-    return null
+    return null;
   }
 
   breadthFirstSearch(startNode, endNode, id = false) {
@@ -133,62 +140,62 @@ export default class PathFinder {
     let row;
     let col;
     if (id) {
-      node = startNode.split("-")
-      row = node[0].substring(1)
-      col = node[1].substring(1)
-      node = this.BOARD_ARRAY[row][col]
+      node = startNode.split("-");
+      row = node[0].substring(1);
+      col = node[1].substring(1);
+      node = this.BOARD_ARRAY[row][col];
     }
-    node = startNode
-    let htmlCur = document.querySelector(`#r${node.row}-c${node.col}`)
-    htmlCur.classList.add('start')
+    node = startNode;
+    let htmlCur = document.querySelector(`#r${node.row}-c${node.col}`);
 
-    this.frontier = [] // queue to keep track of this.frontier nodes
-    this.visited = [] // list to keep track of this.visited Nodes 
-    this.cameFrom = {} //
+    setTimeout(() => htmlCur.classList.add("start"), 59)
 
+    this.frontier = []; // queue to keep track of this.frontier nodes
+    this.visited = []; // list to keep track of this.visited Nodes
+    this.cameFrom = {}; //
+    let found = false
+    this.frontier.push(node);
+    this.cameFrom[node] = null;
 
-    this.frontier.push(node)
-    this.cameFrom[node] = null
-
-    while (!this.frontier.length === 0) {
-      let current = this.frontier.shift()
-
-      let neighbours = this.getNeighbours(current)
-      neighbours.forEach(newNode => {
-        setTimeout(() => this.highlightNeighbours(current), 100)
+    while (this.frontier.length !== 0 && found === false) {
+      let current = this.frontier.shift();
+      let neighbours = this.getNeighbours(current);
+      // eslint-disable-next-line no-loop-func
+      neighbours.forEach((newNode) => {
+        setTimeout(() => this.highlightNeighbours(current), 59)
         if (current.row === endNode.row && current.col === endNode.col) {
-          let htmlCur = document.querySelector(`#r${current.row}-c${current.col}`)
-          setTimeout(() => htmlCur.classList.add('active'), 100)
-
+          let htmlCur = document.querySelector(
+            `#r${current.row}-c${current.col}`
+          );
+          setTimeout(() => htmlCur.classList.add("active"), 100);
+          found = true
+          return null
         }
-        if (newNode === "" || typeof newNode === 'undefined') { return }
+        if (newNode === "" || typeof newNode === "undefined") {
+          return;
+        }
         if (!this.visited.includes(newNode)) {
-          this.frontier.push(newNode)
-          this.visited.push(newNode)
-          this.cameFrom[newNode] = current
-          newNode.previousNode = current
+          this.frontier.push(newNode);
+          this.visited.push(newNode);
+          this.cameFrom[newNode] = current;
+          newNode.previousNode = current;
         }
-      })
-
+      });
     }
-
-    findReturnPath(startNode, currentNode){
-      const returnNode = currentNode.previousNode
-      const path = []
-      const current = currentNode
-      while(current !== startNode){
-        current = current.previousNode
-        row = current.row 
-        col = current.col
-        const htmlCurrent = this.HTML_BOARD_ARRAY[row][col]
-        htmlCurrent.classList.add('nodePath') 
-        path.push(current) 
-      }
-    }
-
-
   }
 
-
-
+  findReturnPath(startNode, currentNode) {
+    const path = [];
+    let current = currentNode;
+    let row,
+      col = [current.row, current.col];
+    while (current !== startNode) {
+      current = current.previousNode;
+      row = current.row;
+      col = current.col;
+      const htmlCurrent = this.HTML_BOARD_ARRAY[row][col];
+      htmlCurrent.classList.add("nodePath");
+      path.push(current);
+    }
+  }
 }

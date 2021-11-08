@@ -1,18 +1,18 @@
-@import 'globals';
-@import 'variables';
+@import "globals";
+@import "variables";
 
-body{
+body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-header{ 
+header {
   display: flex;
   align-items: center;
   width: 100%;
-  button{
+  button {
     padding: 5px;
     background-color: khaki;
     color: black;
@@ -21,16 +21,16 @@ header{
     width: 100px;
   }
 }
-.grid{
+.grid {
   display: flex;
   width: fit-content;
   flex-direction: column;
   border: 1px solid black;
 }
-.row{
+.row {
   display: flex;
 }
-.box{
+.box {
   width: 30px;
   aspect-ratio: 1;
   border: 0 solid black;
@@ -38,79 +38,77 @@ header{
   transition: 1s;
 }
 
-.box:hover{
+.box:hover {
   background-color: yellowgreen;
   transform: scale(1.1);
 }
 
-.highlight{ 
+.highlight {
   background-color: lightblue;
   border: 1px solid white;
-  animation-fill-mode:forwards ;
+  animation-fill-mode: forwards;
   animation: bounce 2s linear;
-
 }
 
-.active{ 
+.active {
   background-color: yellow;
   animation: bouncier 2s linear;
   animation-fill-mode: forwards;
-
 }
 
 @keyframes bounce {
-  0%{
+  0% {
     transform: scale(0.5);
     border-radius: 50%;
     background-color: darkblue;
   }
-  50%{
+  50% {
     border-radius: 0;
     background-color: cyan;
     transform: scale(1);
   }
-  75%{
+  75% {
     transform: scale(1.1);
   }
-  100% { 
+  100% {
     background-color: rosybrown;
     transform: scale(1);
   }
 }
 
 @keyframes bouncier {
-  0%{
+  0% {
     transform: scale(0.5);
     border-radius: 50%;
     background-color: darkred;
   }
-  50%{
+  50% {
     border-radius: 0;
     background-color: red;
     transform: scale(1);
   }
-  75%{
+  75% {
     transform: scale(1.1);
   }
-  100% { 
-    background-color: pink;
+  100% {
+    background-color: lightgreen;
     transform: scale(1);
   }
 }
 
-.start{ 
-  background-color: rebeccapurple;
-  
+.start {
+  background-color: yellow;
+  animation: none;
 }
 
-.pathNode{ 
+.pathNode {
   background-color: red;
   transition: 0.4s ease-in-out;
   animation: opacity 0.5s;
 }
 
 @keyframes opactiy {
-  to{ 
+  to {
     opacity: 1;
   }
 }

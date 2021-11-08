@@ -1,13 +1,10 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
- 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
- sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
- monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 body {
@@ -160,7 +157,7 @@ header button {
             transform: scale(1.1);
   }
   100% {
-    background-color: pink;
+    background-color: lightgreen;
     -webkit-transform: scale(1);
             transform: scale(1);
   }
@@ -184,25 +181,35 @@ header button {
             transform: scale(1.1);
   }
   100% {
-    background-color: pink;
+    background-color: lightgreen;
     -webkit-transform: scale(1);
             transform: scale(1);
   }
 }
 
 .start {
-  background-color: rebeccapurple;
+  background-color: yellow;
+  -webkit-animation: none;
+          animation: none;
 }
-/*# sourceMappingURL=App.css.map */
 
-.pathNode{ 
+.pathNode {
   background-color: red;
+  -webkit-transition: 0.4s ease-in-out;
   transition: 0.4s ease-in-out;
-  animation: opacity 0.5s;
+  -webkit-animation: opacity 0.5s;
+          animation: opacity 0.5s;
 }
 
-@keyframes opactiy {
-  to{ 
+@-webkit-keyframes opactiy {
+  to {
     opacity: 1;
   }
 }
+
+@keyframes opactiy {
+  to {
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=App.css.map */
